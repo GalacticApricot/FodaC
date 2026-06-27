@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FodaC (TruckersMP)</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: #0a0a0a;
+  color: #e8e0d0;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  background: #111;
+  border-bottom: 3px solid #e8390e;
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 64px;
+}
+
+.nav-logo {
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.nav-logo .blue { color: #1c3a8a; }
+.nav-logo .red  { color: #e8390e; }
+.nav-logo sup   { color: #e8390e; font-size: 14px; }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: #7a7060;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color .2s;
+}
+.nav-links a:hover { color: #e8390e; }
+
+.nav-cta {
+  background: #e8390e;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 9px 22px;
+  transition: background .2s;
+  border: 2px solid #e8390e;
+}
+.nav-cta:hover { background: #c02d0a; }
+
+/* HERO */
+.hero {
+  background: #0a0a0a;
+  padding: 90px 2rem 70px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(232,57,14,.025) 3px, rgba(232,57,14,.025) 6px);
+  pointer-events: none;
+}
+.hero-logo {
+  font-family: 'Oswald', sans-serif;
+  font-size: 110px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.hero-logo .blue { color: #1c3a8a; }
+.hero-logo .red  { color: #e8390e; }
+.hero-logo sup   { color: #e8390e; font-size: 48px; vertical-align: super; }
+
+.hero-slogan {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  color: #e8e0d0;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.hero-tagline {
+  font-size: 13px;
+  color: #5a5248;
+  font-style: italic;
+  letter-spacing: 1px;
+  margin-bottom: 48px;
+}
+.hero-btns {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: #e8390e;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Oswald', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 14px 48px;
+  border: 2px solid #e8390e;
+  transition: background .2s;
+  display: inline-block;
+}
+.btn-primary:hover { background: #c02d0a; }
+.btn-ghost {
+  background: transparent;
+  color: #e8390e;
+  text-decoration: none;
+  font-family: 'Oswald', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 14px 48px;
+  border: 2px solid #e8390e;
+  transition: background .2s;
+  display: inline-block;
+}
+.btn-ghost:hover { background: rgba(232,57,14,.12); }
+
+/* DIVIDER */
+.stripe {
+  height: 5px;
+  background: repeating-linear-gradient(90deg, #e8390e 0, #e8390e 20px, #1c3a8a 20px, #1c3a8a 40px);
+}
+
+/* SECTIONS */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 70px 3rem;
+}
+.section-dark {
+  background: #111;
+  padding: 70px 0;
+}
+.section-dark .section { padding: 0 3rem; }
+
+.section-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #e8e0d0;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #e8390e;
+  display: inline-block;
+  margin-bottom: 36px;
+}
+
+.body-text {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #7a7060;
+  margin-bottom: 16px;
+}
+.body-text strong { color: #c8c0b0; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* STAT CARDS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.stat-card {
+  background: #1a1a1a;
+  border: 1px solid #222;
+  border-left: 3px solid #e8390e;
+  padding: 18px;
+}
+.stat-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #4a4238;
+  margin-bottom: 6px;
+}
+.stat-value {
+  font-family: 'Oswald', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #e8e0d0;
+}
+
+/* BLOCKQUOTE */
+.mission-quote {
+  background: #111;
+  border: 1px solid #222;
+  border-left: 4px solid #1c3a8a;
+  padding: 24px 28px;
+  margin: 28px 0;
+  font-family: 'Oswald', sans-serif;
+  font-size: 17px;
+  color: #c8c0b0;
+  line-height: 1.7;
+  letter-spacing: 1px;
+}
+
+/* LIST */
+.fancy-list {
+  list-style: none;
+  margin-top: 20px;
+}
+.fancy-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid #1a1a1a;
+  font-size: 13px;
+  color: #7a7060;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.fancy-list li::before {
+  content: '▶';
+  color: #e8390e;
+  font-size: 9px;
+  flex-shrink: 0;
+}
+
+.info-box {
+  background: #1a1a1a;
+  border: 1px solid #222;
+  border-left: 3px solid #1c3a8a;
+  padding: 20px;
+  margin-bottom: 14px;
+}
+.info-box-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #4a4238;
+  margin-bottom: 8px;
+}
+
+/* REVIEWS */
+.reviews-wrap {
+  background: #0d0d0d;
+  border-top: 3px solid #1c3a8a;
+  border-bottom: 3px solid #1c3a8a;
+  padding: 64px 0;
+  overflow: hidden;
+}
+.reviews-heading {
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #e8e0d0;
+  margin-bottom: 40px;
+}
+.reviews-heading span { color: #e8390e; }
+
+.carousel-track {
+  display: flex;
+  gap: 24px;
+  animation: marquee 22s linear infinite;
+  width: max-content;
+  padding: 4px 12px;
+}
+.carousel-track:hover { animation-play-state: paused; }
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.review-card {
+  background: #1a1a1a;
+  border: 1px solid #222;
+  border-top: 3px solid #e8390e;
+  padding: 24px;
+  width: 300px;
+  flex-shrink: 0;
+}
+.review-stars { color: #f0b800; font-size: 17px; letter-spacing: 3px; margin-bottom: 12px; }
+.review-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #e8e0d0;
+  margin-bottom: 10px;
+}
+.review-body {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #6a6258;
+  margin-bottom: 16px;
+}
+.review-author { border-top: 1px solid #222; padding-top: 12px; }
+.review-name { font-size: 13px; font-weight: 700; color: #c8c0b0; letter-spacing: 1px; }
+.review-role { font-size: 10px; color: #e8390e; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+
+/* JOIN */
+.join-section {
+  background: #0f0f1a;
+  border-top: 3px solid #e8390e;
+  text-align: center;
+  padding: 90px 3rem;
+}
+.join-section h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #e8e0d0;
+  margin-bottom: 16px;
+}
+.join-section h2 span { color: #e8390e; }
+.join-section p {
+  font-size: 14px;
+  color: #5a5248;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.9;
+}
+
+.join-perks {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  margin-bottom: 44px;
+}
+.join-perks li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: #6a6258;
+}
+.join-perks li::before { content: '▶'; color: #e8390e; font-size: 9px; }
+
+.join-btn {
+  display: inline-block;
+  background: #e8390e;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  padding: 20px 72px;
+  border: 3px solid #e8390e;
+  animation: pulse 2.2s ease-in-out infinite;
+  transition: background .2s, transform .15s;
+}
+.join-btn:hover { background: #c02d0a; transform: scale(1.03); }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232,57,14,.45); }
+  50%       { box-shadow: 0 0 0 14px rgba(232,57,14,0); }
+}
+
+/* FOOTER */
+footer {
+  background: #060606;
+  border-top: 4px solid #1c3a8a;
+  padding: 36px 3rem;
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'Oswald', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+}
+.footer-logo .blue { color: #1c3a8a; }
+.footer-logo .red  { color: #e8390e; }
+.footer-logo sup   { color: #e8390e; font-size: 17px; }
+.footer-copy {
+  font-size: 10px;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .hero-logo { font-size: 68px; }
+  .hero-logo sup { font-size: 30px; }
+  .two-col { grid-template-columns: 1fr; gap: 32px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .section { padding: 50px 1.5rem; }
+  .section-dark .section { padding: 0 1.5rem; }
+}
+</style>
+
+<style type="text/css">* { cursor: url('data:image/x-icon;base64,AAACAAEAICAAAAAAAACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAFAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAFAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAABMAAAAcAAAAHAAAABwAAAAcAAAAHAAAABwAAAAcAAAAHAAAABMAAAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAJgAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAJgAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABwAAAA1AAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAAA1AAAAHAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAUwAAAEEAAAAlAAAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAP///////////////////////////////////////////wAAAP8AAABVAAAASwAAAC8AAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAA////////////////////////////////////////////AAAA/wAAAFUAAABSAAAAOAAAABwAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAP//////////////////////////////////////////////////////AAAA/wAAAFQAAABBAAAAJQAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAA//////////////////////////////////////////////////////8AAAD/AAAAVQAAAEsAAAAvAAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAP///////////////////////////////////////////////////////////wAAAP8AAABVAAAAUgAAADYAAAAZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAMAAAA/////////////////////////////////////////////////////////////////wAAAP8AAABUAAAAOAAAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAP//////////////////////////////////////////////////////////////////////AAAA/wAAAFQAAAA4AAAAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASAAAA//////////////////////////////////////////////////////////////////////8AAAD/AAAAUQAAADUAAAAZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///////////wAAAP///////////////////////////////////////////////////////////wAAAP8AAABIAAAALAAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////////////AAAA////////////////////////////////////////////////////////////AAAA/wAAADUAAAAcAAAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///////////wAAAP8AAAD///////////////////////////////////////////8AAAD///////////8AAAD/AAAAHwAAAAwAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAAAP8AAAD/AAAACAAAAP///////////wAAAP///////////wAAAP///////////wAAAP//////AAAA/wAAABUAAAAMAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAA////////////AAAA////////////AAAA////////////AAAA/wAAAP8AAAAPAAAABgAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////8AAAD///////////8AAAD/AAAA/wAAAP8AAAAiAAAABgAAAAMAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/AAAA/wAAAP///////////wAAAP8AAABUAAAAOAAAABwAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////AAAA/wAAAFEAAAA1AAAAGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////8AAAD/AAAARQAAACwAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///////////wAAAP8AAAAvAAAAHAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////AAAA/wAAABUAAAAMAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAAAP8AAAAGAAAABgAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///////////////////////////////////////////////////////////4Af//+AH///gB///wAP//8AD//+AA///gAH//wAB//8AAf/+AAH//AAB//wAAf/8QAP//8AH///AH///4H////h////4f///+H////h////8///8='), auto !important; }</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span class="blue">Foda</span><span class="red">C</span><sup>®</sup></div>
+  <ul class="nav-links">
+    <li><a href="#welcome">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#join">Careers</a></li>
+  </ul>
+  <a href="https://truckersmp.com" class="nav-cta" target="_blank">Join Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="welcome">
+  <div class="hero-logo"><span class="blue">Foda</span><span class="red">C</span><sup>®</sup></div>
+  <div class="hero-slogan">So good we can't let go!</div>
+  <div class="hero-tagline">We pay our drivers just enough for your package to reach your neighbour's!</div>
+  <div class="hero-btns">
+    <a href="#join" class="btn-primary">Join FodaC</a>
+    <a href="#about" class="btn-ghost">Learn More</a>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<!-- WELCOME -->
+<div id="about">
+  <div class="section">
+    <div class="section-title">Welcome to FodaC</div>
+    <div class="two-col">
+      <div>
+        <p class="body-text">At FodaC, we've been proudly delivering parcels to <strong>almost the right destination</strong> for as long as anyone can remember. Our experienced team of highly motivated drivers work around the clock to ensure your <strong>"Sorry we missed you"</strong> card arrives on time.</p>
+        <p class="body-text">Whether it's Cheap Chinese Bullshit or something even less important, we always take the same amount of time to arrive.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stripe" style="height:3px;"></div>
+
+<!-- ABOUT US -->
+<div class="section-dark">
+  <div class="section">
+    <div class="section-title">About Us</div>
+    <p class="body-text">Founded in 1475, FodaC has grown into one of the most recognisable trucking companies in the virtual world. Our drivers are trained using our revolutionary <strong>"Close Enough" delivery system</strong>, allowing us to maintain our industry-leading success rate of taking pictures of people's doors and saying we tried our best to deliver.</p>
+    <p class="body-text">We've built our reputation through hard work, unpaid overtime, and cheap labour. And we couldn't be prouder.</p>
+  </div>
+</div>
+
+<!-- MISSION -->
+<div class="section" id="mission">
+  <div class="section-title">Our Mission</div>
+  <div class="mission-quote">
+    "Deliver cargo, break-check drivers for free insurance claims, and ensure every customer has a story to tell."
+  </div>
+  <p class="body-text">At FodaC, we believe logistics isn't about getting it perfect — it's about <strong>getting there eventually.</strong> Our mission is simple, our commitment is vague, and our delivery windows are best described as optimistic.</p>
+</div>
+
+<div class="stripe" style="height:3px;"></div>
+
+<!-- WHY -->
+<div class="section-dark">
+  <div class="section" id="why">
+    <div class="section-title">Why Choose FodaC?</div>
+    <div class="two-col">
+      <div>
+        <ul class="fancy-list">
+          <li>Always <em>almost</em> on time</li>
+          <li>Very good</li>
+          <li>Door photo included at no extra charge</li>
+          <li>Packages build community with your neighbours</li>
+          <li>Drivers motivated by subtle existential dread</li>
+          <li>Revolutionary Close Enough™ certified process</li>
+        </ul>
+      </div>
+      <div>
+        <div class="info-box">
+          <div class="info-box-label">Our Priority</div>
+          <p class="body-text" style="margin:0;font-size:13px;">Customer satisfaction is our <strong>second-highest</strong> priority. When your package arrives at your neighbour's house, you're not just receiving a delivery... you're <strong>building community.</strong></p>
+        </div>
+        <div class="info-box">
+          <div class="info-box-label">Delivery Philosophy</div>
+          <p class="body-text" style="margin:0;font-size:13px;">Every "Sorry We Missed You" card is hand-placed with care. That's a promise we actually keep. Unlike the package.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="reviews-wrap" id="reviews">
+  <div class="reviews-heading">Customer <span>Reviews</span></div>
+  <div style="overflow:hidden;">
+    <div class="carousel-track">
+      <!-- Set 1 -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Neighbour Got My Sofa</div>
+        <div class="review-body">I ordered a sofa. My neighbour got a sofa. We didn't speak before. We speak now. Five stars — genuinely changed my life and my social calendar.</div>
+        <div class="review-author">
+          <div class="review-name">Gerald P.</div>
+          <div class="review-role">Loyal Customer</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Best Door Photo I've Ever Seen</div>
+        <div class="review-body">The driver took an absolutely stunning photo of my front door. I've framed it. It's on the wall now. Package never arrived but the photo is beautiful. A true artist.</div>
+        <div class="review-author">
+          <div class="review-name">Tracey M.</div>
+          <div class="review-role">Interior Design Enthusiast</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Arrived Eventually</div>
+        <div class="review-body">Ordered in March. It arrived. I'm not going to say when, but it arrived. And it was mostly intact. FodaC delivers on its promise of eventually getting there.</div>
+        <div class="review-author">
+          <div class="review-name">Dave K.</div>
+          <div class="review-role">Very Patient Man</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Close Enough System Works</div>
+        <div class="review-body">My package was left in a bush 400 metres from my house. I found it three weeks later. The box was completely dry. Impressed by the structural integrity of the packaging.</div>
+        <div class="review-author">
+          <div class="review-name">Sandra W.</div>
+          <div class="review-role">Bushcraft Hobbyist</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Built Real Community</div>
+        <div class="review-body">Because of FodaC I now know six of my neighbours by first name. We do a weekly swap of each other's packages. Best social club I've ever accidentally joined.</div>
+        <div class="review-author">
+          <div class="review-name">Raj T.</div>
+          <div class="review-role">Community Champion</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Insurance Was Seamless</div>
+        <div class="review-body">The driver accidentally reversed into my gate. He told me it was a gift. The insurance claim was sorted in weeks. FodaC really does care about the full customer experience.</div>
+        <div class="review-author">
+          <div class="review-name">Mark O.</div>
+          <div class="review-role">Former Gate Owner</div>
+        </div>
+      </div>
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Neighbour Got My Sofa</div>
+        <div class="review-body">I ordered a sofa. My neighbour got a sofa. We didn't speak before. We speak now. Five stars — genuinely changed my life and my social calendar.</div>
+        <div class="review-author">
+          <div class="review-name">Gerald P.</div>
+          <div class="review-role">Loyal Customer</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Best Door Photo I've Ever Seen</div>
+        <div class="review-body">The driver took an absolutely stunning photo of my front door. I've framed it. It's on the wall now. Package never arrived but the photo is beautiful. A true artist.</div>
+        <div class="review-author">
+          <div class="review-name">Tracey M.</div>
+          <div class="review-role">Interior Design Enthusiast</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Arrived Eventually</div>
+        <div class="review-body">Ordered in March. It arrived. I'm not going to say when, but it arrived. And it was mostly intact. FodaC delivers on its promise of eventually getting there.</div>
+        <div class="review-author">
+          <div class="review-name">Dave K.</div>
+          <div class="review-role">Very Patient Man</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Close Enough System Works</div>
+        <div class="review-body">My package was left in a bush 400 metres from my house. I found it three weeks later. The box was completely dry. Impressed by the structural integrity of the packaging.</div>
+        <div class="review-author">
+          <div class="review-name">Sandra W.</div>
+          <div class="review-role">Bushcraft Hobbyist</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Built Real Community</div>
+        <div class="review-body">Because of FodaC I now know six of my neighbours by first name. We do a weekly swap of each other's packages. Best social club I've ever accidentally joined.</div>
+        <div class="review-author">
+          <div class="review-name">Raj T.</div>
+          <div class="review-role">Community Champion</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-title">Insurance Was Seamless</div>
+        <div class="review-body">The driver accidentally reversed into my gate. He told me it was a gift. The insurance claim was sorted in weeks. FodaC really does care about the full customer experience.</div>
+        <div class="review-author">
+          <div class="review-name">Mark O.</div>
+          <div class="review-role">Former Gate Owner</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JOIN -->
+<div class="join-section" id="join">
+  <h2>Join <span>FodaC</span> Today</h2>
+  <p>Think you've got what it takes to drive thousands of kilometres while surviving traffic, roadworks, and border patrol? Whether you're a seasoned veteran or someone who just discovered the accelerator pedal, there's a place for you on our team.</p>
+  <ul class="join-perks" style="list-style:none;margin-bottom:44px;">
+    <li>Unpaid labour</li>
+    <li>Questionable insurance schemes</li>
+    <li>Break-check training included</li>
+    <li>Close Enough™ certified from day one</li>
+  </ul>
+  <br>
+  <a href="https://truckersmp.com" class="join-btn" target="_blank">Apply Now ▶</a>
+  <p style="margin-top: 24px; font-size: 11px; color: #828282; letter-spacing: 1px; text-transform: uppercase;">FodaC — So good we can't let go! &nbsp;|&nbsp; Est. 1475</p>
+</div>
+
+<footer>
+  <div class="footer-logo"><span class="blue">Foda</span><span class="red">C</span><sup>®</sup></div>
+  <div class="footer-copy">
+    © 1475–2026 FodaC Logistics. All packages delivered within 400m of intended destination.<br>
+    This is not a real company.
+    FodaC is purely satirical and fictional and any resemblance to a real company is purely coincidental.<br>
+    FodaC is a TruckersMP virtual company. No actual packages were harmed in the making of this website.
+  </div>
+</footer>
+
+<script>
+  // Fix carousel animation to use precise pixel offset
+  const track = document.querySelector('.carousel-track');
+  if (track) {
+    const totalW = track.scrollWidth / 2;
+    track.style.setProperty('--track-w', totalW + 'px');
+    const style = document.createElement('style');
+    style.textContent = `@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-${totalW}px); } }`;
+    document.head.appendChild(style);
+  }
+</script>
+</body>
+</html>
